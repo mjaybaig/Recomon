@@ -15,4 +15,10 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'views/index.html'))
 });
 
+app.get('/advise', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views/coursedesc.html'))
+})
+app.get('/course', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views/course.html'))
+})
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
