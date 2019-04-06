@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href='css/bootstrap.min.css'>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <title>Prototype</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">Career Runway</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="/advise">Courses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/course">About course</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Button trigger modal -->
+
+      <!-- Modal -->
+      <div class="modal fade" id="replaceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Swap </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Programming Foundations in Java</h5>
+                                        <ul>
+                                            <li>Cras justo odio</li>
+                                            <li>Dapibus ac facilisis in</li>
+                                            <li>Morbi leo risus</li>
+                                            <li>Porta ac consectetur ac</li>
+                                            <li>Vestibulum at eros</li>
+                                        </ul>
+                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Introduction to Databases</h5>
+                                        <ul>
+                                            <li>Cras justo odio</li>
+                                            <li>Dapibus ac facilisis in</li>
+                                            <li>Morbi leo risus</li>
+                                            <li>Porta ac consectetur ac</li>
+                                            <li>Vestibulum at eros</li>
+                                        </ul>
+                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="container">
+        <div class="row">
+            <h3>
+                Course map for Fullstack Developer
+            </h3>
+        </div>
+        <div class="row">
+            <h4>
+                Semester 1
+            </h4>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Programming Foundations in Java</h5>
+                        <ul>
+                            <li>Cras justo odio</li>
+                            <li>Dapibus ac facilisis in</li>
+                            <li>Morbi leo risus</li>
+                            <li>Porta ac consectetur ac</li>
+                            <li>Vestibulum at eros</li>
+                        </ul>
+                        <a href="#" data-toggle="modal" data-target="#replaceModal" data-whatever="Java" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Introduction to Databases</h5>
+                        <ul>
+                            <li>Cras justo odio</li>
+                            <li>Dapibus ac facilisis in</li>
+                            <li>Morbi leo risus</li>
+                            <li>Porta ac consectetur ac</li>
+                            <li>Vestibulum at eros</li>
+                        </ul>
+                        <a href="#" data-toggle="modal" data-target="#replaceModal" data-whatever="Databases" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Programming Foundations in Java</h5>
+                        <ul>
+                            <li>Cras justo odio</li>
+                            <li>Dapibus ac facilisis in</li>
+                            <li>Morbi leo risus</li>
+                            <li>Porta ac consectetur ac</li>
+                            <li>Vestibulum at eros</li>
+                        </ul>
+                        <a href="#" data-toggle="modal" data-target="#replaceModal" data-whatever="math" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Programming Foundations in Java</h5>
+                        <ul>
+                            <li>Cras justo odio</li>
+                            <li>Dapibus ac facilisis in</li>
+                            <li>Morbi leo risus</li>
+                            <li>Porta ac consectetur ac</li>
+                            <li>Vestibulum at eros</li>
+                        </ul>
+                        <a href="#" data-toggle="modal" data-target="#replaceModal" data-whatever="bis" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h4>
+                Semester 2
+            </h4>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Programming Foundations in Java</h5>
+                        <ul>
+                            <li>Cras justo odio</li>
+                            <li>Dapibus ac facilisis in</li>
+                            <li>Morbi leo risus</li>
+                            <li>Porta ac consectetur ac</li>
+                            <li>Vestibulum at eros</li>
+                        </ul>
+                        <a href="#" data-toggle="modal" data-target="#replaceModal" data-whatever="@mdo" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Introduction to Databases</h5>
+                        <ul>
+                            <li>Cras justo odio</li>
+                            <li>Dapibus ac facilisis in</li>
+                            <li>Morbi leo risus</li>
+                            <li>Porta ac consectetur ac</li>
+                            <li>Vestibulum at eros</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Programming Foundations in Java</h5>
+                        <ul>
+                            <li>Cras justo odio</li>
+                            <li>Dapibus ac facilisis in</li>
+                            <li>Morbi leo risus</li>
+                            <li>Porta ac consectetur ac</li>
+                            <li>Vestibulum at eros</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Programming Foundations in Java</h5>
+                        <ul>
+                            <li>Cras justo odio</li>
+                            <li>Dapibus ac facilisis in</li>
+                            <li>Morbi leo risus</li>
+                            <li>Porta ac consectetur ac</li>
+                            <li>Vestibulum at eros</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h4>
+                Semester 3
+            </h4>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Programming Foundations in Java</h5>
+                        <ul>
+                            <li>Cras justo odio</li>
+                            <li>Dapibus ac facilisis in</li>
+                            <li>Morbi leo risus</li>
+                            <li>Porta ac consectetur ac</li>
+                            <li>Vestibulum at eros</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Introduction to Databases</h5>
+                        <ul>
+                            <li>Cras justo odio</li>
+                            <li>Dapibus ac facilisis in</li>
+                            <li>Morbi leo risus</li>
+                            <li>Porta ac consectetur ac</li>
+                            <li>Vestibulum at eros</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Programming Foundations in Java</h5>
+                        <ul>
+                            <li>Cras justo odio</li>
+                            <li>Dapibus ac facilisis in</li>
+                            <li>Morbi leo risus</li>
+                            <li>Porta ac consectetur ac</li>
+                            <li>Vestibulum at eros</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Programming Foundations in Java</h5>
+                        <ul>
+                            <li>Cras justo odio</li>
+                            <li>Dapibus ac facilisis in</li>
+                            <li>Morbi leo risus</li>
+                            <li>Porta ac consectetur ac</li>
+                            <li>Vestibulum at eros</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

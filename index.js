@@ -17,8 +17,17 @@ app.get('/', (req, res) => {
 
 app.get('/advise', (req, res) => {
     res.sendFile(path.join(__dirname, 'views/coursedesc.html'))
-})
+});
 app.get('/course', (req, res) => {
     res.sendFile(path.join(__dirname, 'views/course.html'))
-})
+});
+app.get('/map', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views/coursemap.html'))
+});
+app.get('/choice', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views/choice.html'))
+});
+app.get('/test', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views/draggabletest.html'))
+});
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
