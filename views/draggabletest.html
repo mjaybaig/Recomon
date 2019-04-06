@@ -16,7 +16,8 @@
         $( ".draggable" ).draggable();
         $( "#myDiagramDiv" ).droppable({
         drop: function( event, ui ) {
-            filter = ui['draggable'][0].innerHTML;
+            filter = ui['draggable'][0].id;
+            ui['draggable'][0].style.display = 'none';
             init(filter);
             $( this )
             .addClass( "test" )
@@ -130,7 +131,7 @@
         //     ['Game development', 'Making Operating Systems', 'Making websites'], 
         //     ['Network Security/Anti-hacking', 'Network blah blah']
         // ]
-        var keys = {
+        var computers = {
             'Hardware': [
                 'Circuits',
                 'Mechatronics',
@@ -146,9 +147,34 @@
                 'Network blah blah'
             ]
         }
-
-        var toplevel = Object.keys(keys)
+        var education = {
+            'Swappable': [
+                'Circuits',
+                'Mechatronics',
+                'Robotics'
+            ],
+            'Marketing': [
+                'Game development', 
+                'Making Operating Systems', 
+                'Making websites'
+            ],
+            'Bachodi': [
+                'Network Security/Anti-hacking', 
+                'Network blah blah'
+            ]
+        }
         
+        var toplevel
+        console.log(parentdata.key)
+        switch(parentdata.key){
+            case 'computers':
+                toplevel = Object.keys(computers)
+                break;
+            case 'education':
+                toplevel = Object.keys(education)
+                break;
+        }
+        // console.log(toplevel)
     //   var numchildren = Math.floor(Math.random() * 5);
          var numchildren = 0;
     //   console.log(myDiagram.nodes.count)
@@ -160,14 +186,14 @@
       var parent = myDiagram.findNodeForData(parentdata);
       var degrees = 1;
       var grandparent = parent.findTreeParentNode();
-      while (grandparent) {
-        degrees++;
-        grandparent = grandparent.findTreeParentNode();
-      }
+        while (grandparent) {
+            degrees++;
+            grandparent = grandparent.findTreeParentNode();
+        }
       if(myDiagram.nodes.count <= 1){
-          console.log(toplevel)
+        //   console.log(toplevel)
           numchildren = toplevel.length;
-          console.log(numchildren)
+        //   console.log(numchildren)
           for (var i = 0; i < numchildren; i++) {
               var childdata = {
                   //   key: model.nodeDataArray.length,
