@@ -13,11 +13,10 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script id="code">
       $( function() {
-        $( ".draggable" ).draggable();
+        $( ".draggable" ).draggable({revert: 'valid'});
         $( "#myDiagramDiv" ).droppable({
         drop: function( event, ui ) {
             filter = ui['draggable'][0].id;
-            ui['draggable'][0].style.display = 'none';
             init(filter);
             $( this )
             .addClass( "test" )
@@ -26,6 +25,7 @@
         }
         });
     } );
+   
     function init(initObj) {
         console.log(initObj)
       if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
@@ -99,6 +99,13 @@
     }
     function expandNode(node) {
       var diagram = node.diagram;
+      diagram.addDiagramListener("ObjectSingleClicked",
+        function(e) {
+            var part = e.subject.part;
+            element = part.data.key;
+            document.getElementById('units').append('<p>'+element+'</p>')
+            // if (!(part instanceof go.Link)) showMessage("Clicked on " + part.data.key);
+        });
       diagram.startTransaction("CollapseExpandTree");
       // this behavior is specific to this incrementalTree sample:
       var data = node.data;
@@ -246,20 +253,36 @@
 <div id="sample">
     <div class="row">
         <div class="col-md-8">
-            <div id="myDiagramDiv" style=" border: solid 1px black; height: 70%"></div>
+            <div id="myDiagramDiv" style=" border: solid 1px black; height: 90%"></div>
         </div>
-        <div class="col-md-2">
-            <div class='draggable' id="computers">
-                Computers
+        <div class="col-md-4">
+            <div class="container">
+
+            <div class="row">
+                <h3>Interests</h3>
             </div>
-        </div>
-        <div class="col-md-2">
-            <div class='draggable' id="education">
-                Education
+            <div class="row">
+                <div class="col-md-6">
+                    <div class='draggable' id="computers">
+                        Computers
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class='draggable' id="education">
+                        Education
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <h3>Units</h3>
+            </div>
+            <div id='units' class="row">
+
             </div>
         </div>
     </div>
-  <p><button id="zoomToFit">Zoom to Fit</button><button id="expandAtRandom">Expand random Node</button></p>
+    </div>
+    <p><button id="zoomToFit">Zoom to Fit</button><button id="expandAtRandom">Expand random Node</button></p>
  
 </div>
 </body>
