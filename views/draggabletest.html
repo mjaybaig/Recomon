@@ -12,10 +12,15 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script id="code">
+      function hello(){
+        //   console.log(myDiagram);
+      }
       $( function() {
         $( ".draggable" ).draggable({revert: 'valid'});
+
         $( "#myDiagramDiv" ).droppable({
         drop: function( event, ui ) {
+            event.target.di;
             filter = ui['draggable'][0].id;
             init(filter);
             $( this )
@@ -28,10 +33,11 @@
    
     function init(initObj) {
         console.log(initObj)
-      if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
-      var $ = go.GraphObject.make;  // for conciseness in defining templates
-      var blues = ['#E1F5FE', '#B3E5FC', '#81D4FA', '#4FC3F7', '#29B6F6', '#03A9F4', '#039BE5', '#0288D1', '#0277BD', '#01579B'];
+        if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
+        var $ = go.GraphObject.make;  // for conciseness in defining templates
+        var blues = ['#E1F5FE', '#B3E5FC', '#81D4FA', '#4FC3F7', '#29B6F6', '#03A9F4', '#039BE5', '#0288D1', '#0277BD', '#01579B'];
     //   myDiagram.div = null;
+    // myDiagram.clear();
       myDiagram =
         $(go.Diagram, "myDiagramDiv",  // must name or refer to the DIV HTML element
           {
@@ -46,7 +52,7 @@
       // Define the Node template.
       // This uses a Spot Panel to position a button relative
       // to the ellipse surrounding the text.
-      myDiagram.nodeTemplate =
+        myDiagram.nodeTemplate =
         $(go.Node, "Spot",
           {
             selectionObjectName: "PANEL",
@@ -91,11 +97,11 @@
           ]);
       }
       document.getElementById('zoomToFit').addEventListener('click', function() {
-        myDiagram.zoomToFit();
+        myDiagram.div = null
       });
-      document.getElementById('expandAtRandom').addEventListener('click', function() {
-        expandAtRandom();
-      });
+    //   document.getElementById('expandAtRandom').addEventListener('click', function() {
+    //     expandAtRandom();
+    //   });
     }
     function expandNode(node) {
       var diagram = node.diagram;
@@ -103,7 +109,10 @@
         function(e) {
             var part = e.subject.part;
             element = part.data.key;
-            document.getElementById('units').append('<p>'+element+'</p>')
+            var newnode = document.createElement('div')
+            var txt = document.createTextNode(element)
+            newnode.appendChild(txt);
+            document.getElementById('units').appendChild(newnode);
             // if (!(part instanceof go.Link)) showMessage("Clicked on " + part.data.key);
         });
       diagram.startTransaction("CollapseExpandTree");
@@ -132,12 +141,6 @@
     // for a node until we look for them the first time, which happens
     // upon the first tree-expand of a node.
     function createSubTree(parentdata) {
-        // var something = [
-        //     ['Hardware', 'Software', 'Networks'],
-        //     ['Circuits', 'Mechatronics', 'Robotics'],
-        //     ['Game development', 'Making Operating Systems', 'Making websites'], 
-        //     ['Network Security/Anti-hacking', 'Network blah blah']
-        // ]
         var computers = {
             'Hardware': [
                 'Circuits',
@@ -282,7 +285,7 @@
         </div>
     </div>
     </div>
-    <p><button id="zoomToFit">Zoom to Fit</button><button id="expandAtRandom">Expand random Node</button></p>
+    <p><button onclick="hello()" id="zoomToFit">Clear Area</button></p>
  
 </div>
 </body>
