@@ -33,4 +33,15 @@ img {
     padding: 0.5em; 
     float: left; 
     margin: 10px 10px 10px 0; 
+    text-align: center;
+}
+.pickedunit {
+    border: 1px solid black;
+    background-color:#EFEFEF;
+     width: 100%; 
+    /* height: 100%;  */
+    padding: 0.5em; 
+    /* float: left;  */
+    margin: 10px 10px 10px 0; 
+    text-align: center;
 }

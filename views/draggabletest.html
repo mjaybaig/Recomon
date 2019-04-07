@@ -12,16 +12,18 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script id="code">
-      function hello(){
-        //   console.log(myDiagram);
-      }
       $( function() {
         $( ".draggable" ).draggable({revert: 'valid'});
 
         $( "#myDiagramDiv" ).droppable({
         drop: function( event, ui ) {
-            event.target.di;
-            filter = ui['draggable'][0].id;
+            // event.target.di;
+            filter = {
+                id: ui['draggable'][0].id,
+                html: ui['draggable'][0].innerHTML
+            }
+            // filterid = ui['draggable'][0].id;
+            // filterhtml = ui
             init(filter);
             $( this )
             .addClass( "test" )
@@ -85,7 +87,7 @@
                 var node = obj.part;  // get the Node containing this Button
                 if (node === null) return;
                 e.handled = true;
-                expandNode(node);
+                expandNode(node, initObj);
               }
             }
           )  // end TreeExpanderButton
@@ -93,7 +95,7 @@
       // create the model with a root node data
       if(initObj){
           myDiagram.model = new go.TreeModel([
-            { key: initObj, color: blues[0], everExpanded: false }
+            { key: initObj.html, color: blues[0], everExpanded: false }
           ]);
       }
       document.getElementById('zoomToFit').addEventListener('click', function() {
@@ -103,16 +105,44 @@
     //     expandAtRandom();
     //   });
     }
-    function expandNode(node) {
+    function expandNode(node, initObj) {
       var diagram = node.diagram;
       diagram.addDiagramListener("ObjectSingleClicked",
         function(e) {
+            unitmapping = {
+                'FIT9132': ['Hadoop', 'Hive', 'Scala', 'SQL', 'Relational Databases'],
+                'FIT9134': ['Linux', 'Making Operating Systems', 'Obj-C / Swift and Java', 'Understanding of iOS architecture'],
+                'FIT9139': ['Linux', 'Knowledge of Cisco', 'developing SaaS products', 'developing SaaS products']
+            }
+            var unitname = ''
             var part = e.subject.part;
-            element = part.data.key;
-            var newnode = document.createElement('div')
-            var txt = document.createTextNode(element)
-            newnode.appendChild(txt);
-            document.getElementById('units').appendChild(newnode);
+            for(var k in unitmapping){
+                for(var i in unitmapping[k]){
+                    console.log(k, i, part.data.key)
+                    if(unitmapping[k].includes(part.data.key)){
+                        console.log(k)
+                        unitname = k
+                    }
+                }
+            }
+            console.log(unitname)
+            // element = part.data.key;
+            var close = `<button type="button" class="close" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>`
+            var colcontainer = document.createElement('div')
+            colcontainer.classList.add('col-md-4');
+            document.getElementById('units').appendChild(colcontainer)
+            var unicontainer = document.createElement('div')
+            unicontainer.classList.add('pickedunit')
+            colcontainer.insertAdjacentHTML('afterbegin', close)
+            colcontainer.appendChild(unicontainer)
+
+            close.a
+            var txtcontainer = document.createTextNode(unitname)
+            unicontainer.appendChild(txtcontainer)
+            // newnode.appendChild(txt);
+            // document.getElementById('units').appendChild(newnode);
             // if (!(part instanceof go.Link)) showMessage("Clicked on " + part.data.key);
         });
       diagram.startTransaction("CollapseExpandTree");
@@ -122,7 +152,7 @@
       if (!data.everExpanded) {
         // only create children once per node
         diagram.model.setDataProperty(data, "everExpanded", true);
-        var numchildren = createSubTree(data);
+        var numchildren = createSubTree(data, initObj);
         if (numchildren === 0) {  // now known no children: don't need Button!
           node.findObject('TREEBUTTON').visible = false;
         }
@@ -140,7 +170,7 @@
     // The sample assumes that we have no idea of whether there are any children
     // for a node until we look for them the first time, which happens
     // upon the first tree-expand of a node.
-    function createSubTree(parentdata) {
+    function createSubTree(parentdata, initObj) {
         var computers = {
             'Hardware': [
                 'Circuits',
@@ -174,19 +204,68 @@
             ]
         }
         
+        var bigdataeng = ['Hadoop', 'Hive', 'Scala', 'Spark(Python/Java/R', 'SQL', 'Kafka', 'ETL']
+        var mobileapp = [
+            'iOS app building',
+            'Android app building',
+            'UI-UX Design',
+            'Obj-C / Swift and Java',
+            'Understanding of iOS architecture',
+            'Agile and Scrum'
+        ]
+
+        var webdev = [
+            'HTML',
+            'JavaScript',
+            'User Interface design',
+            'CSS3',
+            'LESS or SASS',
+            'developing SaaS products',
+            'Testing ',
+            'debugging ',
+            'utilizes secure programming practices',
+            'object-oriented programming'
+        ]
+
+        var busanalyst = [
+            'Ms office suite',
+            'Java, C++, PHP',
+            'Relational Databases'
+        ]
+        var netdesigner = [
+            'Networking knowledge', 
+            'Knowledge of Cisco',
+            'Linux',
+            'Troubleshooting IP related concepts'
+        ]
         var toplevel
-        console.log(parentdata.key)
-        switch(parentdata.key){
+        console.log(initObj.id)
+        switch(initObj.id){
             case 'computers':
                 toplevel = Object.keys(computers)
                 break;
             case 'education':
                 toplevel = Object.keys(education)
                 break;
+            case 'mobileapp':
+                toplevel = mobileapp
+                break;
+            case 'webdev':
+                toplevel = webdev
+                break;
+            case 'bigdataeng':
+                toplevel = bigdataeng
+                break;
+            case 'busanalyst':
+                toplevel = busanalyst
+                break;
+            case 'network':
+                toplevel = netdesigner
+                break;
         }
-        // console.log(toplevel)
+        console.log(toplevel)
     //   var numchildren = Math.floor(Math.random() * 5);
-         var numchildren = 0;
+        var numchildren = 0;
     //   console.log(myDiagram.nodes.count)
       if (myDiagram.nodes.count <= 1) {
         numchildren += 1;  // make sure the root node has at least one child
@@ -200,8 +279,8 @@
             degrees++;
             grandparent = grandparent.findTreeParentNode();
         }
-      if(myDiagram.nodes.count <= 1){
-        //   console.log(toplevel)
+    //   if(!myDiagram || myDiagram.nodes.count <= 1){
+          console.log(toplevel)
           numchildren = toplevel.length;
         //   console.log(numchildren)
           for (var i = 0; i < numchildren; i++) {
@@ -217,26 +296,25 @@
                 var child = myDiagram.findNodeForData(childdata);
                 child.location = parent.location;
             }
-        }
-        else{
-            var key = parent.data.key;
-            numchildren = keys.length;
-            console.log(keys[key]);
-            for (var i = 0; i < keys[key].length; i++) {
-                var childdata = {
-                    //   key: model.nodeDataArray.length,
-                    key: keys[key][i],
-                    parent: parentdata.key,
-                    rootdistance: degrees
-                  };
-                  // add to model.nodeDataArray and create a Node
-                  model.addNodeData(childdata);
-                  // position the new child node close to the parent
-                  var child = myDiagram.findNodeForData(childdata);
-                  child.location = parent.location;
-              }
+        // }
+        // else{
+        //     var key = parent.data.key;
+        //     numchildren = keys.length;
+        //     console.log(keys[key]);
+        //     for (var i = 0; i < keys[key].length; i++) {
+        //         var childdata = {
+        //             key: keys[key][i],
+        //             parent: parentdata.key,
+        //             rootdistance: degrees
+        //           };
+        //           // add to model.nodeDataArray and create a Node
+        //           model.addNodeData(childdata);
+        //           // position the new child node close to the parent
+        //           var child = myDiagram.findNodeForData(childdata);
+        //           child.location = parent.location;
+        //       }
 
-        }
+        // }
       return numchildren;
     }
     // function expandAtRandom() {
@@ -255,37 +333,84 @@
 <body>
 <div id="sample">
     <div class="row">
-        <div class="col-md-8">
-            <div id="myDiagramDiv" style=" border: solid 1px black; height: 90%"></div>
-        </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
             <div class="container">
-
-            <div class="row">
-                <h3>Interests</h3>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class='draggable' id="computers">
-                        Computers
+                
+                <div class="row">
+                    <h3>Interests</h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class='draggable' id="computers">
+                            Computers
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class='draggable' id="education">
+                            Consulting
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class='draggable' id="education">
+                            Visualisation
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class='draggable' id="education">
-                        Education
+                <div class="row">
+                    <div class="col">
+                        <h3>Professions</h3>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class='draggable' id="mobileapp">
+                            Mobile Developer
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class='draggable' id="webdev">
+                            Web Developer
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class='draggable' id="bigdataeng">
+                            Big Data Engineer
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class='draggable' id="busanalyst">
+                            Business Analyst
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class='draggable' id="bianalyst">
+                            BI Data Analyst
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class='draggable' id="network">
+                            Network Designer
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <h3>Units</h3>
+                </div>
+                <div id='units' class="row">                        
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="row">
+                <div class="col">
+                    <div id="myDiagramDiv" style=" border: solid 1px black; height: 90%"></div>
                 </div>
             </div>
             <div class="row">
-                <h3>Units</h3>
-            </div>
-            <div id='units' class="row">
-
+                <p><button onclick="hello()" id="zoomToFit">Clear Area</button></p>
             </div>
         </div>
     </div>
-    </div>
-    <p><button onclick="hello()" id="zoomToFit">Clear Area</button></p>
  
 </div>
 </body>
